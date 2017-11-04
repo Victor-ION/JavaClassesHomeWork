@@ -1,4 +1,15 @@
-package homework_1.task1;
+package Task0___02_11_2017;
+
+/**
+ *  task1:
+ *  Используя циклы и метод:
+ *  System.out.print("* "), System.out.print("  "),System.out.print("\n") (для перехода на новую строку).
+ *  Выведите на экран:
+ *  · прямоугольник
+ *  · прямоугольный треугольник
+ *  · равносторонний треугольник
+ *  · ромб
+ */
 
 public class ShapePrinter {
     public static void main(String[] args) {
@@ -11,6 +22,11 @@ public class ShapePrinter {
         printRhombus();
     }
 
+    /**
+     * print "прямоугольник"
+     * @param height parameter of rectangle
+     * @param width parameter of rectangle
+     */
     public static void printRectangle(int height, int width) {
         for (int i = 1; i <= height; i++) {
             for (int j = 1; j <= width; j++) {
@@ -29,6 +45,9 @@ public class ShapePrinter {
         }
     }
 
+    /**
+     * print "прямоугольный треугольник"
+     */
     public static void printRightTriangle() {
         int a = 5;
         for (int i = 1; i <= a; i++) {
@@ -49,6 +68,9 @@ public class ShapePrinter {
         }
     }
 
+    /**
+     * print "равносторонний треугольник"
+     */
     public static void printRegularTriangle(){
         int a = 7;
         for (int i = 1; i<=a; i++){
@@ -68,6 +90,9 @@ public class ShapePrinter {
         }
     }
 
+    /**
+     * print "ромб"
+     */
     public static void printRhombus(){
         int a = 9; // initialize with odd numbers
         for (int i = 1; i <= a; i++){
