@@ -52,7 +52,7 @@ public class SpiralMatrix_5 {
             printFromRightToLeft(matrix, i);
             printFromDownToUp(matrix, i);
         }
-//        System.out.print(matrix[(matrix.length/2)][(matrix.length/2)]); // use this when (i<...) instead of (i<=...)
+//        System.out.print(matrix[(matrix.getLength/2)][(matrix.getLength/2)]); // use this when (i<...) instead of (i<=...)
     }
 
     private static void printFromLeftToRight(int[][] matrix, int i) {
