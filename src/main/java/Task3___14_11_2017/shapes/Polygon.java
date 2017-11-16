@@ -49,6 +49,7 @@ public class Polygon implements Cloneable, Shape{
 
     public void setApexes(Point[] apexes) {
         this.apexes = apexes;
+        perimeter = null;
     }
 
     @Override

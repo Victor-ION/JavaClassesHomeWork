@@ -72,6 +72,7 @@ public class Line implements Cloneable, Shape{
     public void setBegin(Point begin) {
         if (begin == null) throw new IllegalArgumentException();
         this.begin = begin;
+        length = null;
     }
 
     public Point getEnd() {
@@ -82,5 +83,6 @@ public class Line implements Cloneable, Shape{
         if (end == null) throw new IllegalArgumentException();
 
         this.end = end;
+        length = null;
     }
 }

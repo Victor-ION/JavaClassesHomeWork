@@ -86,6 +86,11 @@ public class Triangle implements Cloneable, Shape{
 
     public void setApexA(Point apexA) {
         this.apexA = apexA;
+        sideAB = null;
+        sideAC = null;
+        perimeter = null;
+        area = null;
+        correct = null;
     }
 
     public Point getApexB() {
@@ -94,6 +99,11 @@ public class Triangle implements Cloneable, Shape{
 
     public void setApexB(Point apexB) {
         this.apexB = apexB;
+        sideAB = null;
+        sideBC = null;
+        perimeter = null;
+        area = null;
+        correct = null;
     }
 
     public Point getApexC() {
@@ -102,6 +112,11 @@ public class Triangle implements Cloneable, Shape{
 
     public void setApexC(Point apexC) {
         this.apexC = apexC;
+        sideBC = null;
+        sideAC = null;
+        perimeter = null;
+        area = null;
+        correct = null;
     }
 
     @Override
@@ -133,15 +148,5 @@ public class Triangle implements Cloneable, Shape{
                 '}';
     }
 
-    public void setSideAB(Line sideAB) {
-        this.sideAB = sideAB;
-    }
 
-    public void setSideAC(Line sideAC) {
-        this.sideAC = sideAC;
-    }
-
-    public void setSideBC(Line sideBC) {
-        this.sideBC = sideBC;
-    }
 }
