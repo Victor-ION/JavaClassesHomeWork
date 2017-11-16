@@ -100,7 +100,7 @@ public class Main {
         HashMap<Class<? extends Shape>, List<Shape>> map = new HashMap<>();
         if (arr == null || arr.length == 0) return map;
         for (Shape shape : arr){
-            System.out.println("////////////////   "+shape);
+//            System.out.println("////////////////   "+shape);
             if (map.containsKey(shape.getClass())){
                 map.get(shape.getClass()).add(shape);
             } else {

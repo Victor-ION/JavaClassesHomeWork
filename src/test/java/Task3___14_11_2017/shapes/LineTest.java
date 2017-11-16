@@ -11,4 +11,10 @@ public class LineTest {
         assertEquals(line.getLength(), 5, 0.001);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public  void setColorNegativeValue(){
+        ColorLine line = new ColorLine(new Point(1, 2), new Point(3, 4), -1);
+
+    }
+
 }

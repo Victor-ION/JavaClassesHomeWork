@@ -10,12 +10,14 @@ public class ColorLine extends Line implements Colorable{
 
     @Override
     public void setColor(int color) {
+        if (color<0) throw new IllegalArgumentException("color is negative");
+
         this.color = color;
     }
 
     public ColorLine(Point begin, Point end, int color) {
         super(begin, end);
-        this.color = color;
+        this.setColor(color);
     }
 
     public ColorLine(int x1, int y1, int x2, int y2, int color) {
