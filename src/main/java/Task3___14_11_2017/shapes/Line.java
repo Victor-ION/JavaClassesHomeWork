@@ -15,6 +15,7 @@ public class Line implements Cloneable, Shape{
     public Line(int x1, int y1, int x2, int y2) {
         this.begin = new Point(x1, y1);
         this.end = new Point(x2, y2);
+
 //        if (this.begin.equals(this.end)) throw new IllegalArgumentException("points are the same");
     }
 
