@@ -11,6 +11,7 @@ import java.util.Properties;
 public class DataLoader {
     private Properties urlsProperties;
     private String currentWeather;
+    private String forecastWeather;
 
     private static final String ACCEPT_CHARSET = "Accept-Charset";
     private static final String UTF_8 = "UTF-8";
@@ -18,6 +19,7 @@ public class DataLoader {
 
     public void update(){
         loadCurrentWeather();
+
     }
 
 
@@ -31,15 +33,22 @@ public class DataLoader {
     }
 
     public void loadCurrentWeather(){
-        String urlString = urlsProperties.getProperty("currentWeather");
+        String currentWeatherUrl = urlsProperties.getProperty("currentWeather");
+        currentWeather = loadUrl(currentWeatherUrl);
+        String forecastWeatherUrl = urlsProperties.getProperty("forecastWeather");
+        forecastWeather = loadUrl(forecastWeatherUrl);
+    }
+
+    private String loadUrl(String urlString) {
         try {
             URL url = new URL(urlString);
             URLConnection connection = url.openConnection();
             connection.setRequestProperty(ACCEPT_CHARSET, UTF_8);
-            currentWeather = readResponse(connection);
+            return readResponse(connection);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     private String readResponse(URLConnection connection) throws IOException {
@@ -61,6 +70,14 @@ public class DataLoader {
 
     public void setCurrentWeather(String currentWeather) {
         this.currentWeather = currentWeather;
+    }
+
+    public String getForecastWeather() {
+        return forecastWeather;
+    }
+
+    public void setForecastWeather(String forecastWeather) {
+        this.forecastWeather = forecastWeather;
     }
 
     public static void main(String[] args) {
