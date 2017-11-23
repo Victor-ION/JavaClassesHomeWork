@@ -17,7 +17,7 @@ public class Main {
         while (true){
             observable.update();
             try {
-                Thread.sleep(60000);
+                Thread.sleep(20000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
