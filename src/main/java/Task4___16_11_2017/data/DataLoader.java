@@ -80,11 +80,11 @@ public class DataLoader {
         this.forecastWeather = forecastWeather;
     }
 
-    public static void main(String[] args) {
-        DataLoader dataLoader = new DataLoader();
-        dataLoader.loadCurrentWeather();
-        System.out.println(dataLoader.getCurrentWeather());
-
-
-    }
+//    public static void main(String[] args) {
+//        DataLoader dataLoader = new DataLoader();
+//        dataLoader.loadCurrentWeather();
+//        System.out.println(dataLoader.getCurrentWeather());
+//
+//
+//    }
 }

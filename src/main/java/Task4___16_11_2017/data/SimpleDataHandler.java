@@ -41,4 +41,8 @@ public class SimpleDataHandler implements DataHandler{
     public DataLoader getDataLoader() {
         return dataLoader;
     }
+
+    public void setDataLoader(DataLoader dataLoader) {
+        this.dataLoader = dataLoader;
+    }
 }
