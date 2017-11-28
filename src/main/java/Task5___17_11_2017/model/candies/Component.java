@@ -30,7 +30,6 @@ public enum Component {
     }
 
 
-
     /**
      * for getting info about sugarContent
      */
@@ -51,7 +50,6 @@ public enum Component {
             throw new IllegalArgumentException("Incorrect properties file or pathToFile");
         }
     }
-
 
 
 }

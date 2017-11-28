@@ -2,7 +2,7 @@ package Task5___17_11_2017.model.candies;
 
 import java.util.Map;
 
-public class JellyBelly extends Candy{
+public class JellyBelly extends Candy {
 
     public JellyBelly(Map<Component, Double> componentsMap) {
         super(componentsMap);

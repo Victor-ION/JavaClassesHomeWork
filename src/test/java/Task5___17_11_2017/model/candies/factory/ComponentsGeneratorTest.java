@@ -13,9 +13,9 @@ public class ComponentsGeneratorTest {
         Map<Component, Double> map = ComponentsGenerator.generateComponentsMap(5);
         assertEquals(5, map.size());
 
-        for (Map.Entry<Component, Double> entry : map.entrySet()) {
-            System.out.println(entry.getKey().toString() + " - " + entry.getValue() + "g");
-        }
+//        for (Map.Entry<Component, Double> entry : map.entrySet()) {
+//            System.out.println(entry.getKey().toString() + " - " + entry.getValue() + "g");
+//        }
     }
 
     @Test(expected = IllegalArgumentException.class)

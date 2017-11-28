@@ -3,7 +3,7 @@ package Task5___17_11_2017.model.candies;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Candy implements Componentable{
+public class Candy implements Componentable {
     private Map<Component, Double> componentsMap = new HashMap<>();
     private Double weight;
     private Double sugarWeight;
@@ -62,19 +62,21 @@ public class Candy implements Componentable{
 
     /**
      * remove special weight of component
+     *
      * @param component obj
-     * @param weight if more than weight of component at the moment, remove component at all
+     * @param weight    if more than weight of component at the moment, remove component at all
      * @return this Candy object
      */
     public Candy removeComponent(Component component, double weight) {
         if (component == null) throw new IllegalArgumentException("No component");
-        if (!componentsMap.containsKey(component)) throw new IllegalArgumentException("Component wasn't include in candy");
+        if (!componentsMap.containsKey(component))
+            throw new IllegalArgumentException("Component wasn't include in candy");
         if (weight == 0) throw new IllegalArgumentException("0 component weight");
         double dif = componentsMap.get(component) - weight;
-        if (dif <= 0){
+        if (dif <= 0) {
             removeComponent(component);
         } else {
-          componentsMap.put(component, dif);
+            componentsMap.put(component, dif);
         }
 
         changed();
@@ -83,18 +85,19 @@ public class Candy implements Componentable{
 
     /**
      * remove special component from componentsMap
+     *
      * @param component obj
      * @return this Candy object
      */
     public Candy removeComponent(Component component) {
         if (component == null) throw new IllegalArgumentException("No component");
-        if (!componentsMap.containsKey(component)) throw new IllegalArgumentException("Component wasn't include in candy");
+        if (!componentsMap.containsKey(component))
+            throw new IllegalArgumentException("Component wasn't include in candy");
         componentsMap.remove(component);
 
         changed();
         return this;
     }
-
 
 
     /**
@@ -144,7 +147,7 @@ public class Candy implements Componentable{
         return weight;
     }
 
-    public void checkHasComponents(){
+    public void checkHasComponents() {
         if (componentsMap.isEmpty()) throw new IllegalArgumentException("Candy should have at least one component");
     }
 
@@ -188,23 +191,23 @@ public class Candy implements Componentable{
 
     @Override
     public String toString() {
-        return  "" + getName() + " { \n" +
+        return "" + getName() + " { \n" +
                 stringMap(componentsMap)
-                +"weight=" + getWeight() +
+                + "weight=" + getWeight() +
                 ", sugarWeight=" + getSugarWeight() +
                 '}';
     }
 
     public String stringMap(Map<Component, Double> componentsMap) {
         StringBuilder sb = new StringBuilder("Components : [[\n");
-        for (Map.Entry<Component, Double> entry : componentsMap.entrySet()){
+        for (Map.Entry<Component, Double> entry : componentsMap.entrySet()) {
             sb.append("\t" + entry.getKey().toString() + " - " + entry.getValue() + "g\n");
         }
-         sb.append(" ]] \n");
+        sb.append(" ]] \n");
         return sb.toString();
     }
 
-    public String getName(){
+    public String getName() {
         return this.getClass().getSimpleName();
     }
 

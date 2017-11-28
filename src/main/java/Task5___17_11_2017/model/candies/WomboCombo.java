@@ -2,7 +2,7 @@ package Task5___17_11_2017.model.candies;
 
 import java.util.Map;
 
-public class WomboCombo extends Candy{
+public class WomboCombo extends Candy {
     public WomboCombo(Map<Component, Double> componentsMap) {
         super(componentsMap);
     }

@@ -15,6 +15,7 @@ public class Present {
 
     /**
      * sort candies by weight
+     *
      * @param isAscending if true - sort in ascending order, if false - in descending
      */
     public void sortByWeight(boolean isAscending) {
@@ -24,11 +25,11 @@ public class Present {
                 if (isAscending) {
                     double def = o1.getWeight() - o2.getWeight();
                     if (def == 0) return 0;
-                    return  (def)>0 ? 1 : -1;
+                    return (def) > 0 ? 1 : -1;
                 } else {
                     double def = o1.getWeight() - o2.getWeight();
                     if (def == 0) return 0;
-                    return  (def)>0 ? -1 : 1;
+                    return (def) > 0 ? -1 : 1;
                 }
             }
         });
@@ -36,6 +37,7 @@ public class Present {
 
     /**
      * sort candies by SugarWeight
+     *
      * @param isAscending if true - sort in ascending order, if false - in descending
      */
     public void sortBySugarWeight(boolean isAscending) {
@@ -44,25 +46,26 @@ public class Present {
                     if (isAscending) {
                         double def = o1.getSugarWeight() - o2.getSugarWeight();
                         if (def == 0) return 0;
-                        return  (def)>0 ? 1 : -1;
+                        return (def) > 0 ? 1 : -1;
                     } else {
                         double def = o1.getSugarWeight() - o2.getSugarWeight();
                         if (def == 0) return 0;
-                        return  (def)>0 ? -1 : 1;
+                        return (def) > 0 ? -1 : 1;
                     }
                 });
     }
 
     /**
      * finds all candies that has SugarContent value in the determined range
+     *
      * @param from lower limit (including)
-     * @param to upper limit (including)
+     * @param to   upper limit (including)
      * @return
      */
-    public List<Candy> getCandiesWithSpecialRangeOfSugarWeight(double from, double to){
+    public List<Candy> getCandiesWithSpecialRangeOfSugarWeight(double from, double to) {
         ArrayList<Candy> list = new ArrayList<>();
-        for (Candy candy : candyList){
-            if (candy.getSugarWeight()>= from && candy.getSugarWeight()<=to){
+        for (Candy candy : candyList) {
+            if (candy.getSugarWeight() >= from && candy.getSugarWeight() <= to) {
                 list.add(candy);
             }
         }
@@ -117,7 +120,7 @@ public class Present {
 
 
     public Double getWeight() {
-        if (weight == null){
+        if (weight == null) {
             weight = calculateWeight();
         }
         return weight;
@@ -125,7 +128,7 @@ public class Present {
 
     private Double calculateWeight() {
         double res = 0;
-        for (Candy candy : candyList){
+        for (Candy candy : candyList) {
             res += candy.getWeight();
         }
         return res;
@@ -137,7 +140,7 @@ public class Present {
     }
 
     public Double getSugarWeight() {
-        if (sugarWeight == null){
+        if (sugarWeight == null) {
             sugarWeight = calculateSugarWeight();
         }
         return sugarWeight;
@@ -145,7 +148,7 @@ public class Present {
 
     private Double calculateSugarWeight() {
         double res = 0;
-        for (Candy candy : candyList){
+        for (Candy candy : candyList) {
             res += candy.getSugarWeight();
         }
         return res;
@@ -155,7 +158,7 @@ public class Present {
         this.sugarWeight = sugarWeight;
     }
 
-    public void changed(){
+    public void changed() {
         setWeight(null);
         setSugarWeight(null);
     }
@@ -171,7 +174,7 @@ public class Present {
 
     public String stringList(List<Candy> candyList) {
         StringBuilder sb = new StringBuilder("Candies : [[[\n");
-        for (Candy candy : candyList){
+        for (Candy candy : candyList) {
             sb.append("\t" + candy + "\n\n");
         }
         sb.append("\t]]] \n");
