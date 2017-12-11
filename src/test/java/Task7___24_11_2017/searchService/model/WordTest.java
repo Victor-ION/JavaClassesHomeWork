@@ -25,6 +25,7 @@ public class WordTest {
     @Test
     public void equals(){
         Word word = new Word("hello");
+        word.meetAgain();
         Word word2 = new Word("hello");
         assertEquals(word, word2);
 

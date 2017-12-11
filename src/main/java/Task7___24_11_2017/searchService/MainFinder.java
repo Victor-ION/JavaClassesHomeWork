@@ -78,8 +78,14 @@ public class MainFinder {
         res.sort(new Comparator<Page>() {
             @Override
             public int compare(Page o1, Page o2) {
-
-                return o1.getWords().indexOf(word) - o2.getWords().indexOf(word);
+                int ind1 = o1.getWords().indexOf(word);
+                int ind2 = o2.getWords().indexOf(word);
+                if (ind1 == -1){
+                    if (ind2 == -1) return 0;
+                    else return -1;
+                }
+                else if (ind2 == -1) return 1;
+                else return Integer.compare(o1.getWords().get(ind1).getFreq(), o2.getWords().get(ind2).getFreq());
             }
         });
         return res;
