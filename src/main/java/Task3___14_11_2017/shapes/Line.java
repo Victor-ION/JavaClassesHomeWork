@@ -1,6 +1,8 @@
 package Task3___14_11_2017.shapes;
 
-public class Line implements Cloneable, Shape{
+import java.io.Serializable;
+
+public class Line implements Cloneable, Shape, Serializable{
     private Point begin;
     private Point end;
     private Double length;

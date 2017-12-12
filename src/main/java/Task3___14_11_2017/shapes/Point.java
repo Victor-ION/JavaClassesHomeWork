@@ -1,6 +1,8 @@
 package Task3___14_11_2017.shapes;
 
-public class Point implements Cloneable, Shape{
+import java.io.Serializable;
+
+public class Point implements Cloneable, Serializable, Shape{
     private int x;
     private int y;
 

@@ -3,6 +3,7 @@ package Task3___14_11_2017.shapes;
 public class ColorLine extends Line implements Colorable{
     private int color;
 
+
     @Override
     public int getColor() {
         return color;

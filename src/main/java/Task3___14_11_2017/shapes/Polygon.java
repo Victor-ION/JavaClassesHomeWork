@@ -1,11 +1,26 @@
 package Task3___14_11_2017.shapes;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class Polygon implements Cloneable, Shape{
+public class Polygon implements Cloneable, Shape, Externalizable{
     private Point[] apexes;
     private Double perimeter;
+
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+            out.writeObject(getApexes());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        apexes  = (Point[]) in.readObject();
+
+    }
+
+    public Polygon(){}
 
     public Polygon(Point... apexes) {
         if (apexes == null || apexes.length == 0) throw new IllegalArgumentException("empty parameter");

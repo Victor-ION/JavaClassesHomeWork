@@ -1,6 +1,8 @@
 package Task3___14_11_2017.shapes;
 
-public class Triangle implements Cloneable, Shape{
+import java.io.*;
+
+public class Triangle implements Cloneable, Shape, Externalizable{
     private Point apexA;
     private Point apexB;
     private Point apexC;
@@ -11,11 +13,29 @@ public class Triangle implements Cloneable, Shape{
     private Boolean correct;
     private Double perimeter;
 
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(getApexA());
+        out.writeObject(getApexB());
+        out.writeObject(getApexC());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        apexA = (Point) in.readObject();
+        apexB = (Point) in.readObject();
+        apexC = (Point) in.readObject();
+    }
+
+    public Triangle(){}
+
     public Triangle(Point apexA, Point apexB, Point apexC) {
         this.apexA = apexA;
         this.apexB = apexB;
         this.apexC = apexC;
     }
+
 
     /**
      * calculate area (square) of triangle by Heron formula
