@@ -27,18 +27,18 @@ public class Server {
         this.storage = storage;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Server server = new Server(new Storage());
         server.start(1234);
 
     }
 
-    public void start(int port){
-        try{
+    public void start(int port) {
+        try {
             System.out.println("Starting server!");
             serverSocket = new ServerSocket(port);
             System.out.println("ServerSocket created");
-            while (!isEnd){
+            while (!isEnd) {
                 System.out.println("waiting for connection");
                 Socket socket = serverSocket.accept();
                 System.out.println("Somebody is knocking, librarian preparing");
@@ -47,14 +47,13 @@ public class Server {
                 t.start();
                 System.out.println("librarian has been started to serve");
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
-            for (Thread t : threads){
+        } finally {
+            for (Thread t : threads) {
                 t.interrupt();
                 try {
-                    if (serverSocket!=null) serverSocket.close();
+                    if (serverSocket != null) serverSocket.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

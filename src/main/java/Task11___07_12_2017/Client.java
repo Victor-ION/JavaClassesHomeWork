@@ -2,19 +2,18 @@ package Task11___07_12_2017;
 
 import Task11___07_12_2017.library.Book;
 import Task11___07_12_2017.library.UnavailableBookException;
+import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class Client {
     private Socket socket;
-    private ObjectInputStream input;
-    private ObjectOutputStream output;
+    private DataInputStream input;
+    private DataOutputStream output;
     private int size;
 
-    private void writeToConsole(String message){
+    private void writeToConsole(String message) {
         System.out.println("Client: " + message);
     }
 
@@ -22,37 +21,62 @@ public class Client {
         writeToConsole("Getting socket");
         Socket socket = new Socket(ip, port);
         writeToConsole("Got socket");
-        output = new ObjectOutputStream(socket.getOutputStream());
+        output = new DataOutputStream(socket.getOutputStream());
         output.flush();
-        input = new ObjectInputStream(socket.getInputStream());
+        input = new DataInputStream(socket.getInputStream());
         writeToConsole("Client started!");
         size = input.readInt();
-        writeToConsole("got size of books");
+        writeToConsole("got size of books: " + size);
     }
 
+
+    /**
+     * for demonstrating abilities
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Client client = null;
         try {
             client = new Client("localhost", 1234);
-            System.out.println(client.getBookForHome(1));
-            client.writeToConsole("got 1 book");
-            System.out.println(client.getBookForReadingRoom(3));
-            client.writeToConsole("got 3 book");
-            System.out.println(client.getBookForHome(3));
-            client.writeToConsole("got 3 book");
-            System.out.println(client.getBookForReadingRoom(2));
-            client.writeToConsole("got 2 book");
+            try {
+                System.out.println(client.getBookForHome(1));
+                client.writeToConsole("got 1 book");
+            } catch (UnavailableBookException e) {
+                client.writeToConsole(e.getMessage());
+            }
+            try {
+                System.out.println(client.getBookForReadingRoom(3));
+                client.writeToConsole("got 3 book");
+            } catch (UnavailableBookException e) {
+                client.writeToConsole(e.getMessage());
+            }
+            try {
+                System.out.println(client.getBookForHome(3));
+                client.writeToConsole("got 3 book");
+            } catch (UnavailableBookException e) {
+                client.writeToConsole(e.getMessage());
+            }
+            try {
+                System.out.println(client.getBookForReadingRoom(2));
+                client.writeToConsole("got 2 book");
+            } catch (UnavailableBookException e) {
+                client.writeToConsole(e.getMessage());
+            }
 
-        } catch (UnavailableBookException e){
-            System.out.println(e.getMessage());
-        } catch (IOException|ClassNotFoundException e) {
+            client.endDeal();
+
+
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             if (client != null) {
                 try {
                     client.input.close();
                     client.output.close();
-                    client.socket.close();
+                    if (client.socket != null) {
+                        client.socket.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -60,7 +84,7 @@ public class Client {
         }
     }
 
-    public Book getBookForReadingRoom(int id) throws IOException, ClassNotFoundException{
+    public Book getBookForReadingRoom(int id) throws IOException, ClassNotFoundException {
         output.writeInt(1);
         output.flush();
 
@@ -73,29 +97,36 @@ public class Client {
 
 
         int resCode = input.readInt();
-        switch (resCode){
-            case 1:{
-               throw new UnavailableBookException("Not present at the moment");
+        switch (resCode) {
+            case 1: {
+                throw new UnavailableBookException("Not present at the moment");
             }
-            case 2:{
+            case 2: {
                 throw new UnavailableBookException("Not available for home");
             }
-            case 3:{
+            case 3: {
                 throw new UnavailableBookException("Incorrect id");
             }
-            case 0:{
-                Book book = (Book) input.readObject();
+            case 0: {
+                Gson gson = new Gson();
+                Book book = gson.fromJson(input.readUTF(), Book.class);
                 return book;
             }
         }
         return null;
     }
 
-    public Book getBookForHome(int id) throws IOException, ClassNotFoundException{
+    public Book getBookForHome(int id) throws IOException, ClassNotFoundException {
         output.writeInt(2);
         output.flush();
 
         return getBook(id);
+    }
+
+    public void endDeal() throws IOException {
+        output.writeInt(3);
+        output.flush();
+        writeToConsole("Ending client working");
     }
 
 }

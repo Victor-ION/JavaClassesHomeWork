@@ -2,11 +2,11 @@ package Task11___07_12_2017.library;
 
 import java.io.Serializable;
 
-public class Book implements Serializable{
+public class Book implements Serializable {
     private static int idCounter = 0;
     private final int id;
     private boolean isAvailableForHome;
-    private boolean isPresent;
+    private volatile boolean isPresent;
     private final String name;
     private final String content;
 
@@ -48,13 +48,10 @@ public class Book implements Serializable{
     }
 
 
-    public synchronized boolean isAvailableForHome() {
+    public boolean isAvailableForHome() {
         return isAvailableForHome;
     }
 
-    public synchronized void setAvailableForHome(boolean availableForHome) {
-        isAvailableForHome = availableForHome;
-    }
 
     public synchronized boolean isPresent() {
         return isPresent;
