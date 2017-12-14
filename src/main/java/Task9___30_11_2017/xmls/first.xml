@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gem unicname="Kiara">
+    <typeName>Diamond</typeName>
+    <preciousness>precious</preciousness>
+    <origin>South Africa</origin>
+    <visualParam>
+        <color>green</color>
+        <transparency>98%</transparency>
+        <facetCount>12</facetCount>
+    </visualParam>
+    <value>12.4</value>
+</gem>

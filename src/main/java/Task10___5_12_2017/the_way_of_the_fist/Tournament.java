@@ -105,7 +105,7 @@ public class Tournament implements Callable<Monk> {
      *
      * @param participant1
      * @param participant2
-     * @return
+     * @return winner
      */
     public static Monk getBattleWinner(Monk participant1, Monk participant2) {
         if (participant1.getEnergyTsi() >= participant2.getEnergyTsi()) {

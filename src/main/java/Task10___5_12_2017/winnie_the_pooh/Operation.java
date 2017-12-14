@@ -11,7 +11,7 @@ package Task10___5_12_2017.winnie_the_pooh;
  *  При решении использовать парадигму портфеля задач.
  */
 public class Operation {
-    private boolean find = false;
+    private volatile boolean find = false;
 
     private boolean[][] forest= {
             {false, false, false, false},
@@ -31,6 +31,10 @@ public class Operation {
             {false, false, false, false},
 
     };
+
+    public void setForest(boolean[][] forest) {
+        this.forest = forest;
+    }
 
     private int counter = 0;
 
@@ -64,11 +68,11 @@ public class Operation {
 
     }
 
-    public boolean isFind() {
+    public synchronized boolean isFind() {
         return find;
     }
 
-    public void findBear() {
+    public synchronized void findBear() {
         this.find = true;
 
     }
