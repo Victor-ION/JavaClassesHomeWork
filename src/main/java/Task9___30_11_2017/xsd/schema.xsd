@@ -3,17 +3,41 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element type="xs:string" name="typeName"/>
-                <xs:element type="xs:string" name="preciousness"/>
+                <xs:element name="preciousness">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="precious"/>
+                            <xs:enumeration value="semiprecious"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element type="xs:string" name="origin"/>
                 <xs:element name="visualParam">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element type="xs:string" name="color"/>
-                            <xs:element type="xs:string" name="transparency"/>
+                            <xs:element name="color">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="green"/>
+                                        <xs:enumeration value="yellow"/>
+                                        <xs:enumeration value="blue"/>
+                                        <xs:enumeration value="red"/>
+                                        <xs:enumeration value="transparent"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="transparency">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                       <xs:pattern value="[0-9]{1}|[0-9]{2}|[0-9]{3}%"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element name="facetCount">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:integer">
-
+                                        <xs:minInclusive value="4"/>
+                                        <xs:maxInclusive value="15"/>
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -22,7 +46,7 @@
                 </xs:element>
                 <xs:element type="xs:float" name="value"/>
             </xs:sequence>
-            <xs:attribute type="xs:ID" name="unicname"/>
+            <xs:attribute type="xs:ID" name="unicName"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>
