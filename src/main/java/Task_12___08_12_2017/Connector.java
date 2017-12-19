@@ -3,6 +3,8 @@ package Task_12___08_12_2017;
 import Task_12___08_12_2017.dao.Book;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Connector {
 
@@ -72,12 +74,23 @@ public class Connector {
         }
     }
 
-    public Book findBookByAuthorNameAndBookName(String authorFirstName, String authorSecondName, String bookName){
+    public Book findBookByAuthorNameAndBookName(String authorFirstName, String authorSecondName, String bookName) {
+        List<Book> list = findBookByAuthorName(authorFirstName, authorSecondName);
+        for (Book b : list){
+            if (b.getName().equals(bookName)){
+                return b;
+            }
+        }
+        System.out.println("No such book!");
+        return null;
+    }
+
+    public Book findBookByAuthorNameAndBookName1(String authorFirstName, String authorSecondName, String bookName) {
         Book book = new Book();
         try {
 //            String sql = "SELECT books.idBook, books.bookName, books.rating, authors.idAuthor, authors.firstName, authors.secondName" +
             String sql = "SELECT *" +
-                    "FROM LibraryTask.authors JOIN LibraryTask.books ON authors.idAuthor=books.idAuthor" +
+                    "FROM (LibraryTask.authors JOIN LibraryTask.books ON authors.idAuthor=books.idAuthor)" +
                     "WHERE firstName = ? AND secondName = ? AND bookName = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -85,15 +98,9 @@ public class Connector {
             preparedStatement.setString(2, authorSecondName);
             preparedStatement.setString(3, bookName);
             preparedStatement.execute();
-            System.out.println("dddd");
 
             ResultSet rs = preparedStatement.getResultSet();
-//            String sql = "SELECT *" +
-//                    "FROM authors INNER JOIN books ON authors.idAuthor=books.idAuthor" +
-//                    "WHERE secondName = '"+ authorSecondName+"' AND bookName = '"+ bookName+"'";
-//            Statement statement = connection.createStatement();
-//            statement.execute(sql);
-//            ResultSet rs = statement.getResultSet();
+//
 
             rs.next();
             book.setIdBook(rs.getInt("idBook"));
@@ -106,11 +113,50 @@ public class Connector {
             System.out.println("book was successfully found!");
 
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("can't find book with: author name = " + authorFirstName +
                     " " + authorSecondName + ", book name = " + bookName + ".  reason: " + e.getMessage());
         }
         return book;
+    }
+
+    public List<Book> findBookByAuthorName(String authorFirstName, String authorSecondName) {
+        ArrayList<Book> books = new ArrayList<>();
+
+        try {
+//            String sql = "SELECT books.idBook, books.bookName, books.rating, authors.idAuthor, authors.firstName, authors.secondName" +
+            String sql = "SELECT *" +
+                    "FROM (authors JOIN books ON authors.idAuthor=books.idAuthor)" +
+                    "WHERE firstName=? AND secondName=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, authorFirstName);
+            preparedStatement.setString(2, authorSecondName);
+            preparedStatement.execute();
+
+            ResultSet rs = preparedStatement.getResultSet();
+
+            while (rs.next()) {
+                Book book = new Book();
+
+                book.setIdBook(rs.getInt("idBook"));
+                book.setName(rs.getString("bookName"));
+                book.setRating(rs.getInt("rating"));
+                book.setIdAuthor(rs.getInt("idAuthor"));
+                book.setAuthorFirstName(rs.getString("firstName"));
+                book.setAuthorSecondName(rs.getString("secondName"));
+
+                books.add(book);
+            }
+
+            System.out.println("books was successfully found!");
+
+
+        } catch (SQLException e) {
+            System.out.println("can't find book with: author name = " + authorFirstName +
+                    " " + authorSecondName + ".  reason: " + e.getMessage());
+        }
+        return books;
     }
 }
 

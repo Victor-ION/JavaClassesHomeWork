@@ -1,12 +1,17 @@
 package Task_12___08_12_2017;
 
 import Task_12___08_12_2017.dao.Book;
+import org.junit.Test;
 
-public class Demo {
+import java.sql.SQLException;
 
-    private static Connector connector;
+import static org.junit.Assert.*;
 
-    public static void main(String[] args) throws Exception{
+public class ConnectorTest {
+
+    @Test
+    public void testCycle(){
+        Connector connector = null;
         try {
             connector = new Connector("LibraryTask", "localhost", 3306);
 
@@ -16,18 +21,12 @@ public class Demo {
             Book book = connector.findBookByAuthorNameAndBookName(
                     "Alexandr", "Petrov", "MyBook");
 
-            System.out.println();
-            System.out.println(book);
-            System.out.println();
 
             connector.changeRatingForBook(book.getIdBook(), 5);
 
             book = connector.findBookByAuthorNameAndBookName(
                     "Alexandr", "Petrov", "MyBook");
 
-            System.out.println();
-            System.out.println(book);
-            System.out.println();
 
 
             connector.removeBookFromAuthorList(book.getIdBook());
@@ -38,10 +37,14 @@ public class Demo {
         }
         finally {
             if (connector!=null) {
-                connector.stop();
+                try {
+                    connector.stop();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
-
     }
+
 }
