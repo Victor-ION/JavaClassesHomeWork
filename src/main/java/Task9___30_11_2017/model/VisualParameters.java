@@ -40,7 +40,7 @@ public class VisualParameters {
      * @param transparency
      */
     public void setTransparency(String transparency) {
-        if (transparency.matches("[0-9]{1}|[0-9]{2}|[0-9]{3}%")){
+        if (transparency.matches("([0-9]{1}|[0-9]{2}|[0-9]{3})%")){
             //check that value is in range of 0-100%
             String digits = transparency.substring(0, transparency.length()-1);
             int i = Integer.parseInt(digits);
@@ -71,10 +71,19 @@ public class VisualParameters {
         }
         if (count<4 ||count>15) throw new IllegalFacetCountException(sFacetCount,
                 "Count is out of allowed range");
-        this.facetCount = facetCount;
+        this.facetCount = count;
     }
 
     public void setFacetCount(int facetCount) {
         this.facetCount = facetCount;
+    }
+
+    @Override
+    public String toString() {
+        return "VisualParameters{" +
+                "color=" + color +
+                ", transparency='" + transparency + '\'' +
+                ", facetCount=" + facetCount +
+                '}';
     }
 }

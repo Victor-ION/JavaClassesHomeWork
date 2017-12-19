@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Gem {
-    private static Set<String> unicNames = new HashSet<>();
 
     private String unicName;
     private String typeName;
@@ -26,13 +25,11 @@ public class Gem {
     }
 
     /**
-     * should be unic
+     * no restrictions
      * @param unicName source
      */
     public void setUnicName(String unicName) {
-        if (unicNames.contains(unicName)) throw new NotUnicNameException(unicName);
         this.unicName = unicName;
-        unicNames.add(unicName);
 
     }
 
@@ -118,11 +115,18 @@ public class Gem {
         this.value = value;
     }
 
-    public static Set<String> getUnicNames() {
-        return unicNames;
-    }
 
-    public static void setUnicNames(Set<String> unicNames) {
-        Gem.unicNames = unicNames;
+
+
+    @Override
+    public String toString() {
+        return "Gem{" +
+                "unicName='" + unicName + '\'' +
+                ", typeName='" + typeName + '\'' +
+                ", preciousness=" + preciousness +
+                ", origin='" + origin + '\'' +
+                ", visualParameters=" + visualParameters +
+                ", value=" + value +
+                '}';
     }
 }

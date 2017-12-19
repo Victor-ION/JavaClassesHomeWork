@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gem unicName="Naoma">
+    <typeName>Aquamarine</typeName>
+    <preciousness>semiprecious</preciousness>
+    <origin>England</origin>
+    <visualParam>
+        <color>blue</color>
+        <transparency>78%</transparency>
+        <facetCount>10</facetCount>
+    </visualParam>
+    <value>21</value>
+</gem>

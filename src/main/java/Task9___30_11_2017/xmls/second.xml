@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gem unicName="Bueno">
+    <typeName>Ruby</typeName>
+    <preciousness>precious</preciousness>
+    <origin>India</origin>
+    <visualParam>
+        <color>red</color>
+        <transparency>90%</transparency>
+        <facetCount>6</facetCount>
+    </visualParam>
+    <value>5.7</value>
+</gem>
